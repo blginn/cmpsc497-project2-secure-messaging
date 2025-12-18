@@ -9,7 +9,7 @@ from crypto_utils import (
 
 app = Flask(__name__)
 
-# Generate RSA keys on server startup
+# Generate RSA keys on server 
 PRIVATE_KEY, PUBLIC_KEY = generate_rsa_keys()
 
 
@@ -27,17 +27,17 @@ def receive_message():
     ciphertext = data["ciphertext"]
     hmac_tag = data["hmac"]
 
-    # 1. Decrypt AES key using RSA private key
+    # Decrypt AES key using RSA private key
     session_key = rsa_decrypt_key(PRIVATE_KEY, encrypted_session_key)
 
-    # 2. Validate HMAC
+    #  Validate HMAC
     if not verify_hmac(session_key, hmac_tag, ciphertext):
         return jsonify({"status": "ERROR", "message": "HMAC validation failed"}), 400
 
-    # 3. Decrypt AES ciphertext
+    # Decrypt AES ciphertext
     decrypted_json = aes_decrypt(session_key, iv, ciphertext)
 
-    # 4. Detect anomalies
+    #  Detect anomalies
     anomaly = anomaly_detection(decrypted_json)
 
     return jsonify({
