@@ -3,32 +3,6 @@ Author: Brandon Ginn (blg5403)
 
 This project implements a fully secure end-to-end messaging system using Python for both the **Client Application** and the **Server API**. The goal is to demonstrate encryption, authentication, serialization, and secure protocol handling.
 
-
-# Each different security Features Implemented
-
-###  RSA (Public-Key Cryptography)
-Used to **encrypt the AES symmetric key** during session establishment.
-
-###  AES-256 (Symmetric Encryption)
-Used to **encrypt the Student JSON message** for fast, secure communication.
-
-###  HMAC-SHA256 (Integrity Validation)
-Ensures the encrypted data was **not modified** in transit.
-
-###  Base64 Encoding
-All encrypted bytes are **Base64-encoded** for safe transmission over HTTP.
-
-###  JSON Serialization
-The Student object is serialized into a JSON string before encryption.
-
-###  REST API Server
-Built using Flask.  
-Provides two endpoints:
-- `/public-key` — returns RSA public key  
-- `/receive` — accepts encrypted message, decrypts it, validates HMAC, checks anomalies
-
----
-
 #  Project Structure
 
 ```
