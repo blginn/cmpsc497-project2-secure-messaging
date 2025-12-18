@@ -5,11 +5,11 @@ from Crypto.Random import get_random_bytes
 import base64
 
 
-# Encrypt JSON using AES CBC mode
+# Encrypt JSON using AES 
 def aes_encrypt(session_key, plaintext):
     data = plaintext.encode("utf-8")
 
-    # PKCS7 padding
+    #  padding
     pad_len = 16 - (len(data) % 16)
     data += bytes([pad_len]) * pad_len
 
@@ -31,7 +31,7 @@ def rsa_encrypt_key(public_key_pem, session_key):
     return base64.b64encode(encrypted_key).decode()
 
 
-# Create HMAC signature
+# HMAC signature
 def create_hmac(session_key, ciphertext_b64):
     ciphertext_bytes = base64.b64decode(ciphertext_b64)
 
